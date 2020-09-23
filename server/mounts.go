@@ -27,6 +27,12 @@ func (s *Server) Mounts() []environment.Mount {
 		Source:   s.Filesystem.Path(),
 		ReadOnly: false,
 	})
+	
+	m = append(m, environment.Mount{
+		Target:   "/share",
+		Source:   "/srv/daemon-share",
+		ReadOnly: false,
+	})
 
 	// Try to mount in /etc/localtime and /etc/timezone if they exist on the host system.
 	if _, err := os.Stat("/etc/localtime"); err != nil {
